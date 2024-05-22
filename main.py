@@ -3,6 +3,9 @@
 import pandas as pd 
 import numpy as np 
 import logging
+from functions.data_prep import DataPreparation
+from functions.prediction import ProductivityPredictModel
+
 
 # Though in real, we would probably make a query from SQL database, here we are limited with csv file
 file_path = 'data/garments_worker_productivity.csv'

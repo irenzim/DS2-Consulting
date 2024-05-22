@@ -1,5 +1,5 @@
 # Defining a separate class for data preprocessing. 
-
+import pandas as pd
 class DataPreparation: 
     """
     Class that allows to verify missing data and impute NAs, based on the selected option. 
@@ -9,20 +9,29 @@ class DataPreparation:
 
     def check_missing_data(self): 
         """Verify if missing data is persistent - if yes, returns column name."""
-        pass 
+        missing_cols = self.df.columns[self.df.isnull().any()]
+        return missing_cols
 
-    def impute_missing_data(self, impute_option:str): 
+    def impute_missing_data(self, missing_cols, impute_option:str): 
         """Complementary function - takes column name from the previous function and imputes."""
 
         if impute_option == 'median': 
-            pass 
+            self.df[[missing_cols]] = self.df[[missing_cols]].fillna(self.df[[missing_cols]].median())
 
         elif impute_option == 'zero': 
-            pass 
+            self.df[[missing_cols]] = self.df[[missing_cols]].fillna(0)
 
     def correct_column_value(self, column_name:str): 
         """Any other corrections on data."""
-        pass
+        self.df['department'] = self.df['department'].str.strip()
+        self.df = pd.get_dummies(self.df, columns=['department'])
+        self.df['day'] = pd.to_datetime(self.df['date']).apply(lambda x: x.day)
+        self.df['month'] = pd.to_datetime(self.df['date']).apply(lambda x: x.month)
+        self.df['num_week'] = pd.to_datetime(self.df['date']).apply(lambda x: x.weekofyear)
+
+        return self.df
+
+
 
 
 
