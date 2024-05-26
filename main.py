@@ -36,7 +36,7 @@ def run_preprocessing(file_path):
     model.fit(data=df_transformed, features=['actual_productivity', 'targeted_productivity', 'over_time'],
               lags=2,
               target='actual_productivity',
-              split_date='2015-03-10',
+              split_date='2015-03-04',
               date_column='date')
 
     logging.info('Making predictions')

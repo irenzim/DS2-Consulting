@@ -1,3 +1,4 @@
+# Libraries import 
 import pandas as pd
 import numpy as np
 from xgboost import XGBRegressor
@@ -19,7 +20,7 @@ class PredictProductivityModel:
         Creates lag features for specific features in the time series data.
         
         Parameters:
-        data (pd.DataFrame): The input time series data.
+        data (pd.DataFrame): The input time series data on productivity.
         features (list): The list of feature names to create lag features for.
         lags (int): The number of lag features to create.
 
@@ -36,7 +37,7 @@ class PredictProductivityModel:
 
         return df_lagged
 
-    def fit(self, data, features, lags, target, split_date, date_column):
+    def fit(self, data, features:list, lags:int, target:str, split_date:str, date_column:str):
         """
         Fits the XGBoost model on the time series data with lag features.
         
