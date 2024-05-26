@@ -47,5 +47,5 @@ def run_preprocessing(file_path):
 if __name__ == '__main__':
     """When the code is executed, the DataFrame is preprocessed and saved to CSV"""
     final_df = run_preprocessing(file_path)
-    final_df.to_csv('final_df.csv', index=False)
+    final_df.to_csv('data/final_df.csv', index=False)
     logging.info('Preprocessed data is saved to CSV')
